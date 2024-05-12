@@ -1,0 +1,12 @@
+<?php
+class laptop {
+    private $db;
+    public function __construct(){
+        $this->db = new Database;
+    }
+    public function getLaptop(){
+        $sql = "SELECT * FROM laptop";
+        return $this->db->select($sql);
+    }
+}
+?>

@@ -1,0 +1,195 @@
+header{
+    font-family: "Poppins-SemiBold", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+header a{
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -ms-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+}
+header a:hover {
+    color: var(--color-5, #a2a6b0);
+}
+.header-first{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+    
+}
+
+.header-second{
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-around;
+    
+}
+.menu{
+    display: flex;
+    justify-content: space-between;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+.nav ul{
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+}
+.nav ul:hover{
+    border-bottom: 3px solid #0156ff; 
+
+}
+.deal a{
+    padding: 10px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: var(--color-3, #0156ff);
+    border-width: 2px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.deal a:hover{
+    border-radius: 50px;
+    border-style: solid;
+    border-color: var(--color-3, #0156ff);
+    border-width: 2px;
+    background-color: var(--color-3, #0156ff);
+    color: white;
+}
+.fa-cart-shopping{
+    font-size: 32px;
+}
+.quantity {
+    color: #ffffff;
+    background: var(--color-3, #0156ff);
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(55px,-15px);
+    -webkit-transform: translate(55px,-15px);
+    -moz-transform: translate(55px,-15px);
+    -ms-transform: translate(55px,-15px);
+    -o-transform: translate(55px,-15px);
+}
+.scu{
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    justify-content: space-between;
+}
+.scu div{
+    display: flex;
+    align-items: center;
+    margin: 0px 20px;
+}
+.input-search{
+    border-radius: 50px;
+    border-style: solid;
+    border-color: #646668;
+    height: 30px;
+    width: 300px;
+    padding: 0 10px;
+    padding-right: 40px;
+}
+.btn-search{
+    background-color: var(--color-3, #000000);
+    color: white;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: var(--color-3, #000000);
+    height: 30px;
+    width:40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(0px, 0px);
+    -webkit-transform: translate(-30px, 0px);
+    -moz-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+}
+.btn-search:hover{
+    background-color: var(--color-3, #0156ff);
+    border-color: var(--color-3, #0156ff);
+    cursor: pointer;
+}
+.brand{
+    display: inline-block;
+}
+.brand .content img{
+    width: 80px;
+    height: 40px;
+}
+.content div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+/* .brand a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    
+} */
+.brand .content{
+    display: none;
+    position: absolute;
+    background-color: hsl(0, 0%, 100%);
+    min-width: 200px;
+    box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.8);
+    left: 365px;
+    top: 107px;
+    z-index: 1;
+}
+.brand:hover .content{
+    display: block;
+}
+.brand .namebrand:hover{
+    background-color: hsl(0, 0%, 95%);
+}
+.person{
+    padding: 20px 0px;
+    display: inline-block;
+}
+.content2 div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+.person .content2{
+    display: none;
+    position: absolute;
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.8);
+    top: 107px;
+    right: 27px;
+}
+.person:hover .content2{
+    background-color: hsl(0, 0%, 95%);
+    display: block;
+}
