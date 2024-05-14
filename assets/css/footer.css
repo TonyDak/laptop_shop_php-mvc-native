@@ -1,0 +1,99 @@
+footer {
+    background-color: #000000;
+    color: #6b6b6b;
+    font-family: "Poppins-SemiBold", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.head-footer{
+    padding: 20px;
+    color: #ffffff;
+}
+
+.content-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+.content-footer li, .content-footer a{
+    color: #ffffff;
+}
+.content-footer div {
+    flex: 1 1 200px;
+    margin-bottom: 20px;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li a {
+    color: #aaaaaa;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    color: #007bff;
+}
+
+.content-footer li{
+    margin-bottom: 10px;
+}
+.content-footer p{
+    margin-bottom: 20px;
+}
+
+.head-footer{
+    margin-left: 180px;
+    margin-right: 180px;
+    display: flex;
+    justify-content: space-between;
+}
+.content-footer div{
+    display: flex;
+    justify-content: center;
+}
+.foot-footer{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.email{
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #646668;
+    height: 40px;
+    width: 350px;
+    padding: 0 10px;
+    padding-right: 40px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.btnsubmit{
+    color: #ffffff;
+    background:  #0156ff;
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+.btnsubmit:hover{
+    background: #ffffff;
+    color: black;
+    cursor: pointer;
+}

@@ -39,15 +39,11 @@ main a:hover {
     z-index: 0;
 }
 .prev:hover, .next:hover{
-    border-style: solid;
-    border-color: var(--color-3, #0156ff);
-    background-color: white;
-    border-width: 2px;
-    border-radius: 50px;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    -ms-border-radius: 50px;
-    -o-border-radius: 50px;
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
 }
 
 .slideshow img:first-child {
