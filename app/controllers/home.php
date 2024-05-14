@@ -10,16 +10,13 @@ class home extends Controller{
     public function index(){
         $laptop = $this->laptopModel->getLaptop();
         $brand = $this->brandModel->getBrand();
-        $laptop_last = $this->product_new();
+        $laptop_last = $this->product_discount();
         $laptop_gaming = $this->laptop_gaming();
         $laptop_macbook = $this->laptop_macbook();
-        $this->view('home', ['laptop' => $laptop, 'brand' => $brand, 'laptop_last' => $laptop_last, 'laptop_gaming' => $laptop_gaming, 'laptop_macbook' => $laptop_macbook]);
+        $this->view('home/main_product', ['laptop' => $laptop, 'brand' => $brand, 'laptop_last' => $laptop_last, 'laptop_gaming' => $laptop_gaming, 'laptop_macbook' => $laptop_macbook]);
     }
-    public function logout(){
-        session_destroy();
-        header('Location: ' . URLROOT . 'home');
-    }
-    public function product_new(){
+    
+    public function product_discount(){
         $laptop = $this->laptopModel->getLaptop();
         $discountedLaptops = array_filter($laptop, function($l) {
             return $l['discount'] > 0;
@@ -49,18 +46,6 @@ class home extends Controller{
 
         $laptops = array_slice($laptops, 0, 5);
         return $laptops;
-    }
-    function pagination(){
-        $laptop = $this->laptopModel->getLaptop();
-        $total = count($laptop);
-        $limit = 25;
-        $page = isset($_GET['page']) ? $_GET['page'] : 1;
-        $start = ($page - 1) * $limit;
-        $data = array_slice($laptop, $start, $limit);
-        echo json_encode([
-            'data' => $data,
-            'total' => $total
-        ]);    
     }
 }
 ?>

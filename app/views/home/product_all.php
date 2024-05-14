@@ -1,5 +1,4 @@
-
-
+<?php require_once 'app/views/includes/header.php'; ?>
 <main class="main">
     <div class="slideshow">
         <img src="assets/img/intel.png" alt="">
@@ -128,102 +127,104 @@
             </div>
         </div>
     </div>
+</main>
 
+<script>
+var slideIndex = 0;
+showSlides(false);
+
+function plusSlides(n) {
+    clearTimeout(autoSlide); // clear the existing timer
+    showSlides(slideIndex += n, true);
+}
+
+function showSlides(n, manual) {
+    var i;
+    var slides = document.getElementsByClassName("slideshow")[0].getElementsByTagName("img");
+    if (n > slides.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    if (!manual) {
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1
+        }
+    }
+    slides[slideIndex - 1].style.display = "block";
+    autoSlide = setTimeout(showSlides, 8000); // Change image every 8 seconds
+}
+</script>
 
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    function loadPage(page) {
-        $.ajax({
-            url: 'http://localhost/laptop_shop/home/pagination',
-            type: 'GET',
-            data: {
-                page: page
-            },
-            success: function(response) {
-                var result = JSON.parse(response);
-                var data = result.data;
-                console.log(data);
-                var total = result.total;
-                var limit = 25; // number of rows in page
-                var pages = Math.ceil(total / limit);
+function loadPage(page) {
+    $.ajax({
+        url: 'http://localhost/laptop_shop/home/pagination',
+        type: 'GET',
+        data: {
+            page: page
+        },
+        success: function(response) {
+            var result = JSON.parse(response);
+            var data = result.data;
+            console.log(data);
+            var total = result.total;
+            var limit = 25; // number of rows in page
+            var pages = Math.ceil(total / limit);
 
-                // Update page content
-                var content = $('#product-content');
-                content.empty();
-                data.forEach(function(laptop) {
-                    var productCard = `
+            // Update page content
+            var content = $('#product-content');
+            content.empty();
+            data.forEach(function(laptop) {
+                var productCard = `
                         <div class="product-card">
                             <img src="https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/${laptop.display_image}" alt="">
                             <h4 class="pd-name">${laptop.name}</h4><br>
                             <div class="pd-price">`;
-                    if (laptop.discount != 0) {
-                        productCard += `
+                if (laptop.discount != 0) {
+                    productCard +=
+                    `
                             <span class="pd-price-old">${laptop.price} VND</span><br />
                             <h3 class="pd-price-new">${laptop.price - (laptop.price * laptop.discount / 100)} VND</h3>`;
-                    } else {
-                        productCard += `
+                } else {
+                    productCard += `
                             <span class="pd-price-old"></span><br />
                             <h3 class="pd-price-new">${laptop.price} VND</h3>`;
-                    }
-                    productCard += `
+                }
+                productCard += `
                             </div>
                             <div class="addcart">
                                 <a href="" class="add-to-cart">Add to Cart</a>
                             </div>
                         </div>`;
-                    content.append(productCard);
-                });
+                content.append(productCard);
+            });
 
-                // Update pagination buttons
-                var pagination = $('#pagination');
-                pagination.empty();
-                for (var i = 1; i <= pages; i++) {
-                    var button = $('<button onclick="loadPage(' + i + ')">' + i + '</button>');
-                    if (i === page) {
-                        button.addClass('active');
-                    }
-                    pagination.append(button);
+            // Update pagination buttons
+            var pagination = $('#pagination');
+            pagination.empty();
+            for (var i = 1; i <= pages; i++) {
+                var button = $('<button onclick="loadPage(' + i + ')">' + i + '</button>');
+                if (i === page) {
+                    button.addClass('active');
                 }
+                pagination.append(button);
             }
-        });
-    }
-
-    // Call loadPage function when page is loaded
-    $(document).ready(function() {
-        loadPage(1);
+        }
     });
-</script>
-<script>
-    var slideIndex = 0;
-    showSlides(false);
+}
 
-    function plusSlides(n) {
-        clearTimeout(autoSlide); // clear the existing timer
-        showSlides(slideIndex += n, true);
-    }
-
-    function showSlides(n, manual) {
-        var i;
-        var slides = document.getElementsByClassName("slideshow")[0].getElementsByTagName("img");
-        if (n > slides.length) {
-            slideIndex = 1
-        }
-        if (n < 1) {
-            slideIndex = slides.length
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        if (!manual) {
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1
-            }
-        }
-        slides[slideIndex - 1].style.display = "block";
-        autoSlide = setTimeout(showSlides, 8000); // Change image every 8 seconds
-    }
+// Call loadPage function when page is loaded
+$(document).ready(function() {
+    loadPage(1);
+});
 </script>
 <script>
 function handleCheckboxClick(fillClass) {
@@ -259,3 +260,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<?php require_once 'app/views/includes/footer.php'; ?>
