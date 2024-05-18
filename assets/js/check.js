@@ -27,3 +27,7 @@ function checkEmptyAndHighlight(inputElement) {
 $('input').on('input', function() {
     $(this).css('border', '');
 });
+
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+}

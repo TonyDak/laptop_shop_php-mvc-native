@@ -13,7 +13,7 @@ class home extends Controller{
         $laptop_last = $this->product_discount();
         $laptop_gaming = $this->laptop_gaming();
         $laptop_macbook = $this->laptop_macbook();
-        $this->view('home/main_product', ['laptop' => $laptop, 'brand' => $brand, 'laptop_last' => $laptop_last, 'laptop_gaming' => $laptop_gaming, 'laptop_macbook' => $laptop_macbook]);
+        $this->view('home/home', ['laptop' => $laptop, 'brand' => $brand, 'laptop_last' => $laptop_last, 'laptop_gaming' => $laptop_gaming, 'laptop_macbook' => $laptop_macbook]);
     }
     
     public function product_discount(){

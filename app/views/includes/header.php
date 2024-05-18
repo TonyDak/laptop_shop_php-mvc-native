@@ -12,14 +12,17 @@
         box-sizing: border-box;
     }
     </style>
+    
+    <link rel="icon" href="assets/img/laptop_shop.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/header.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 </head>
-
+<script src="assets/js/check.js"></script>
 <body>
     <header>
         <div class="header-first">
@@ -32,7 +35,7 @@
         </div>
         <div class="header-second">
             <div class="menu">
-                <img src="assets/img/laptop_shop.png" alt="logo" style="width:150px; height: 70px;" />
+                <a href="http://localhost/laptop_shop/"><img src="assets/img/laptop_shop.png" alt="logo" style="width:150px; height: 70px;" /></a>
                 <nav class="nav">
                     <ul><a href="http://localhost/laptop_shop/product_all">LAPTOP</a></ul>
                     <ul class="brand"><a>THƯƠNG HIỆU</a>

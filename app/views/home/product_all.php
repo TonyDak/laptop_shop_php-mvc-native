@@ -166,7 +166,7 @@ function showSlides(n, manual) {
 <script>
 function loadPage(page) {
     $.ajax({
-        url: 'http://localhost/laptop_shop/home/pagination',
+        url: 'http://localhost/laptop_shop/product_all/pagination',
         type: 'GET',
         data: {
             page: page
@@ -184,21 +184,33 @@ function loadPage(page) {
             content.empty();
             data.forEach(function(laptop) {
                 var productCard = `
-                        <div class="product-card">
-                            <img src="https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/${laptop.display_image}" alt="">
-                            <h4 class="pd-name">${laptop.name}</h4><br>
-                            <div class="pd-price">`;
+                    <div class="product-card">
+                        <img src="https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/${laptop.display_image}" alt="">
+                        <h4 class="pd-name">${laptop.name}</h4><br>
+                        <div class="pd-price">`;
                 if (laptop.discount != 0) {
-                    productCard +=
-                    `
-                            <span class="pd-price-old">${laptop.price} VND</span><br />
-                            <h3 class="pd-price-new">${laptop.price - (laptop.price * laptop.discount / 100)} VND</h3>`;
+                    productCard += `
+                        <span class="pd-price-old">${formatNumber(laptop.price)} <u>đ</u></span><br />
+                        <h3 class="pd-price-new">${formatNumber(laptop.price - (laptop.price * laptop.discount / 100))} <u>đ</u></h3>`;
                 } else {
                     productCard += `
-                            <span class="pd-price-old"></span><br />
-                            <h3 class="pd-price-new">${laptop.price} VND</h3>`;
+                        <span class="pd-price-old"></span><br />
+                        <h3 class="pd-price-new">${formatNumber(laptop.price)} <u>đ</u></h3>`;
                 }
                 productCard += `
+                            </div><br>
+                            <div class="pd-info" >
+                                <span class="pd-info-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gpu-card" viewBox="0 0 16 16" >
+                                <title>Đồ họa</title>
+                                <path d="M4 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0m7.5-1.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .5.5V4h13.5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H2v2.5a.5.5 0 0 1-1 0V2H.5a.5.5 0 0 1-.5-.5m5.5 4a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M9 8a2.5 2.5 0 1 0 5 0 2.5 2.5 0 0 0-5 0"/>
+                                <path d="M3 12.5h3.5v1a.5.5 0 0 1-.5.5H3.5a.5.5 0 0 1-.5-.5zm4 1v-1h4v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5"/>
+                                </svg> ${laptop.gpu}</span><br>
+                                <span class="pd-info-item"><i class="fa-solid fa-laptop fa-fw" title="Màn hình"></i> ${laptop.screen_size}</span><br>
+                                <span class="pd-info-item"><i class="fa-solid fa-microchip" title="CPU" ></i> ${laptop.cpu_model}</span><br>
+                                <span class="pd-info-item"><i class="fa-solid fa-memory" title="RAM" ></i> ${laptop.ram_capacity}</span><br>
+                                <span class="pd-info-item"><i class="fas fa-hdd" title="Ổ cứng"></i> ${laptop.storage}</span><br>
+                                <span class="pd-info-item"><i class="fas fa-weight-hanging" title="Trọng lượng" ></i> ${laptop.weight_kg} kg</span><br>
                             </div>
                             <div class="addcart">
                                 <a href="" class="add-to-cart">Add to Cart</a>
@@ -225,6 +237,7 @@ function loadPage(page) {
 $(document).ready(function() {
     loadPage(1);
 });
+
 </script>
 <script>
 function handleCheckboxClick(fillClass) {
