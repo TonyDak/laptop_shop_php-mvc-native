@@ -37,21 +37,21 @@
             <div class="menu">
                 <a href="http://localhost/laptop_shop/"><img src="assets/img/laptop_shop.png" alt="logo" style="width:150px; height: 70px;" /></a>
                 <nav class="nav">
-                    <ul><a href="http://localhost/laptop_shop/product_all">LAPTOP</a></ul>
+                    <ul><a href="http://localhost/laptop_shop/product_all?brand=Tat_ca&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Tat_ca">LAPTOP</a></ul>
                     <ul class="brand"><a>THƯƠNG HIỆU</a>
                         <div class="content">
                             <?php foreach($data['brand'] as $brand):  extract($brand) ?>
                             <div class="namebrand">
-                                <a>
+                                <a href="http://localhost/laptop_shop/product_all?brand=<?php echo ucfirst($brand_nameAscii); ?>&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Tat_ca">
                                     <img src="<?php echo $img_logo ?>" alt="">
                                 </a>
                             </div>
                             <?php endforeach; ?>
                         </div>
                     </ul>
-                    <ul><a href="">MACBOOK</a></ul>
-                    <ul><a href="">GAMING</a></ul>
-                    <ul><a href="">MỎNG NHẸ</a></ul>
+                    <ul><a href="http://localhost/laptop_shop/product_all?brand=Apple-macbook&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Tat_ca">MACBOOK</a></ul>
+                    <ul><a href="http://localhost/laptop_shop/product_all?brand=Tat_ca&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Gaming">GAMING</a></ul>
+                    <ul><a href="http://localhost/laptop_shop/product_all?brand=Tat_ca&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Mong_nhe">MỎNG NHẸ</a></ul>
                     <ul class="deal"><a href="">DEALS SỐC</a></ul>
                 </nav>
             </div>

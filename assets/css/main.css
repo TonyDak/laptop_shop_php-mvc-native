@@ -280,6 +280,7 @@ main a:hover {
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    width: 2000px;
 }
 /* phan trang */
 #pagination {
@@ -332,4 +333,35 @@ main a:hover {
 .fill-all label{
     font-family: "Poppins-Semi", sans-serif;
     font-size: 13px;
+}
+
+/* fill price */
+.sort-product-all button{
+    margin: 10px 10px;
+    width: 100px;
+    height: 30px;
+}
+.sort-product-all button {
+    background-color: #f8f9fa;
+    border: 1px solid #b8b6b6;
+    border-radius: 5px;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.sort-product-all button:hover {
+    background-color: #0156ff;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.sort-product-all .active {
+    background-color: #0156ff;
+    color: #f8f9fa;
 }

@@ -192,7 +192,7 @@ function showSlides(n, manual) {
         }
     }
     slides[slideIndex - 1].style.display = "block";
-    autoSlide = setTimeout(showSlides, 8000); // Change image every 8 seconds
+    autoSlide = setTimeout(showSlides, 5000); // Change image every 8 seconds
 }
 </script>
 <?php require_once 'app/views/includes/footer.php'; ?>
