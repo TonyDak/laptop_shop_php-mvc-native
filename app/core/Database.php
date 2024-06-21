@@ -26,7 +26,11 @@ class Database{
             return false;
         }
     }
-    
+     
+    public function close(){
+        $this->conn->close();
+    }
+
     public function testConnection(){
         if ($this->conn->connect_error) {
             echo "Connection failed: " . $this->conn->connect_error;
@@ -34,4 +38,5 @@ class Database{
             echo "Database connection successful!";
         }
     }
+
 }

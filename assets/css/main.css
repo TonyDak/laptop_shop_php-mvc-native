@@ -58,7 +58,7 @@ main a:hover {
 }
 /* product new */
 .intro-product-deal{
-    font-family: "Poppins-SemiBold", sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,7 +84,7 @@ main a:hover {
     height: 530px;
 }
 .product-card{
-    font-family: "Poppins-Semi", sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
     display: flex;
     flex-direction: column;
@@ -156,7 +156,7 @@ main a:hover {
     width: 150px;
 }
 .pd-info{
-    font-family: "Poppins-Semi", sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 12px;
     padding: 5px;
     border-radius: 5px;
@@ -180,7 +180,7 @@ main a:hover {
     flex-direction: column;
 }
 .intro-product-gaming{
-    font-family: "Poppins-SemiBold", sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -219,7 +219,7 @@ main a:hover {
     flex-direction: column;
 }
 .intro-product-macbook{
-    font-family: "Poppins-SemiBold", sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -252,12 +252,13 @@ main a:hover {
     flex-direction: column;
 }
 .sort-product-all{
-    font-family: "Poppins-SemiBold", sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 .list-product-all #product-content{
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -282,6 +283,7 @@ main a:hover {
     height: 100%;
     width: 2000px;
 }
+
 /* phan trang */
 #pagination {
     display: flex;
@@ -326,12 +328,12 @@ main a:hover {
     flex-flow: wrap;
 }
 .fill-all h3{
-    font-family: "Poppins-SemiBold", sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
     font-weight: 600;
 }
 .fill-all label{
-    font-family: "Poppins-Semi", sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
 }
 

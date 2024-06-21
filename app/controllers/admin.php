@@ -9,6 +9,9 @@ class admin extends Controller{
         $laptop = $this->laptopModel->getLaptop();
         $this->view('admin/admin', ['laptop' => $laptop]);
     }
-    
+    public function logout(){
+        session_destroy();
+        header('Location: ' . URLROOT . 'home');
+    }
 }
 ?>

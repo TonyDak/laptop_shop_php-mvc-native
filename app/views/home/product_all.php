@@ -218,6 +218,14 @@ function loadPage(page) {
             // Update page content
             var content = $('#product-content');
             content.empty();
+            if (data.length === 0) {
+                $(content).css('flex-direction', 'column');
+                $(content).css('align-items', 'center');
+                content.append('<span><img width="105px" height="140px" src="assets/img/no-result.png"></img></span><div style="display:flex; align-items:center; flex-direction:column;"><br><h3>Không tìm thấy sản phẩm phù hợp</h3><br><p>Vui lòng điều chỉnh lại bộ lọc</p></div>');
+            }else{
+                $(content).css('flex-direction', 'row');
+                $(content).css('align-items', 'none');
+            }
             data.forEach(function(laptop) {
                 var productCard = `
                     <div class="product-card">
@@ -258,7 +266,7 @@ function loadPage(page) {
             // Update pagination buttons
             var pagination = $('#pagination');
             pagination.empty();
-            if(pages <= 6 && pages > 1){
+            if(pages <= 4 && pages > 1){
                 for (var i = 1; i <= pages; i++) {
                     var button = $('<button onclick="loadPage(' + i + ')">' + i + '</button>');
                     if (i === page) {
@@ -266,17 +274,26 @@ function loadPage(page) {
                     }
                     pagination.append(button);
                 }
-            }if(pages > 6){
-                var maxButtons = 6;
+            }if(pages > 4){
+                var maxButtons = 4;
                 var middleButton = Math.ceil(maxButtons / 2);
                 var startButton = page - middleButton + 1;
                 var endButton = page + middleButton - 1;
+
+
+                if(page < maxButtons){
+                    startButton = 1;
+                    endButton = maxButtons;
+                }
+                if(page == pages - 3){
+                    startButton = pages - 4;
+                    endButton = pages;
+                }
 
                 if (startButton <= 0) {
                     startButton = 1;
                     endButton = maxButtons;
                 }
-
                 if (endButton > pages) {
                     endButton = pages;
                     startButton = pages - maxButtons + 1;
@@ -295,14 +312,26 @@ function loadPage(page) {
 
                 if (startButton > 1) {
                     pagination.prepend('<button disabled>...</button>');
+                    pagination.prepend('<button onclick="loadPage(' + 1 + ')">' + 1 + '</button>');
                 }
-
-                if (endButton < pages) {
+                if (endButton+1 < pages) {    
                     pagination.append('<button disabled>...</button>');
+                }
+                if (endButton < pages) {    
+                    pagination.append('<button onclick="loadPage(' + pages + ')">' + pages + '</button>');
                 }
             }
         }
     });
+    // // Kiểm tra nếu trang lớn hơn 1, thì thêm vào URL
+    // if (page > 1) {
+    //     var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?trang=' + page;
+    //     window.history.pushState({path:newUrl}, '', newUrl);
+    // } else {
+    //     // Nếu là trang đầu tiên, quay về URL gốc không có tham số trang
+    //     var originalUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    //     window.history.pushState({path:originalUrl}, '', originalUrl);
+    // }
 }
 
 // Call loadPage function when page is loaded
