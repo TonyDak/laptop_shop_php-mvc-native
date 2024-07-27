@@ -5,8 +5,9 @@ class register extends Controller{
         $this->userModel = $this->model('user');
     }
     public function index(){
-        $data = $this->userModel->getUser();
-        $this->view('home/register', $data);
+        // $data = $this->userModel->getUser();
+        // $this->view('home/register', $data);
+        $this->view('home/register');
     }
     public function register(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){

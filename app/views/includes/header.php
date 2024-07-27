@@ -52,7 +52,7 @@
                     <ul><a href="http://localhost/laptop_shop/product_all?brand=Apple-macbook&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Tat_ca">MACBOOK</a></ul>
                     <ul><a href="http://localhost/laptop_shop/product_all?brand=Tat_ca&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Gaming">GAMING</a></ul>
                     <ul><a href="http://localhost/laptop_shop/product_all?brand=Tat_ca&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Mong_nhe">MỎNG NHẸ</a></ul>
-                    <ul class="deal"><a href="">DEALS SỐC</a></ul>
+                    <ul class="deal"><a href="http://localhost/laptop_shop/product_all?brand=Tat_ca&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Tat_ca&discount">DEALS SỐC</a></ul>
                 </nav>
             </div>
             <div class="scu">

@@ -7,9 +7,8 @@ class product_all extends Controller{
         $this->brandModel = $this->model('brand');
     }
     public function index(){
-        $laptop = $this->laptopModel->getLaptop();
         $brand = $this->brandModel->getBrand();
-        $this->view('home/product_all', ['laptop' => $laptop, 'brand' => $brand]);
+        $this->view('home/product_all', ['brand' => $brand]);
     }
     function pagination(){
         $laptop = $this->laptopModel->getLaptop();
@@ -170,6 +169,13 @@ class product_all extends Controller{
             'data' => $data,
             'total' => $total
         ]);    
+    }
+    function product_detail(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $product_name = $_POST['product_name'];
+            $laptop_detail = $this->laptopModel->getLaptopByName($product_name);
+            $_SESSION['product_detail'] = $laptop_detail;
+        }
     }
 }
 ?>

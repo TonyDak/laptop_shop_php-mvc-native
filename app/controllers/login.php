@@ -5,8 +5,9 @@ class login extends Controller{
         $this->userModel = $this->model('user');
     }
     public function index(){
-        $data = $this->userModel->getUser();
-        $this->view('home/login', $data);
+        // $data = $this->userModel->getUser();
+        // $this->view('home/login', $data);
+        $this->view('home/login');
     }
     public function login(){
         $data = $this->userModel->getUser();

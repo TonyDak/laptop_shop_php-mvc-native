@@ -8,12 +8,11 @@ class home extends Controller{
     }
 
     public function index(){
-        $laptop = $this->laptopModel->getLaptop();
         $brand = $this->brandModel->getBrand();
         $laptop_last = $this->product_discount();
         $laptop_gaming = $this->laptop_gaming();
         $laptop_macbook = $this->laptop_macbook();
-        $this->view('home/home', ['laptop' => $laptop, 'brand' => $brand, 'laptop_last' => $laptop_last, 'laptop_gaming' => $laptop_gaming, 'laptop_macbook' => $laptop_macbook]);
+        $this->view('home/home', ['brand' => $brand, 'laptop_last' => $laptop_last, 'laptop_gaming' => $laptop_gaming, 'laptop_macbook' => $laptop_macbook]);
     }
     
     public function product_discount(){
@@ -46,6 +45,13 @@ class home extends Controller{
 
         $laptops = array_slice($laptops, 0, 5);
         return $laptops;
+    }
+    function product_detail(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $product_name = $_POST['product_name'];
+            $laptop_detail = $this->laptopModel->getLaptopByName($product_name);
+            $_SESSION['product_detail'] = $laptop_detail;
+        }
     }
 }
 ?>

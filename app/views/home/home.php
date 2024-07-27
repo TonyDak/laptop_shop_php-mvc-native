@@ -22,12 +22,12 @@
         <div class="product-deal">
             <div class="intro-product-deal">
                 <h2>DEAL SỐC <img src="assets/img/hot-deal.png" style="width: 60px; height: 50px;"></h2>
-                <h3><a href="">All Products</a></h3>
+                <h3><a href="http://localhost/laptop_shop/product_all?brand=Tat_ca&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Tat_ca&discount">All Products</a></h3>
             </div>
             <div class="list-product-deal">
                 <?php foreach($data['laptop_last'] as $laptop_last): ?>
                 <div class="product-card">
-                    <img src="<?php echo 'https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/' . $laptop_last['display_image']; ?>"
+                    <img src="<?php echo 'https://cdn2.fptshop.com.vn/unsafe/180x0/filters:quality(60)/' . str_replace('/', '_', $laptop_last['display_image']); ?>"
                         alt="">
                     <h4 class="pd-name"><?php echo $laptop_last['name']; ?></h4><br>
                     <div class="pd-price">
@@ -66,7 +66,7 @@
         <div class="product-gaming">
             <div class="intro-product-gaming">
                 <h2>GAMING </h2>
-                <h3><a href="">All Products</a></h3>
+                <h3><a href="http://localhost/laptop_shop/product_all?brand=Tat_ca&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Gaming">All Products</a></h3>
             </div>
             <div class="div-list">
                 <div class="gaming-brand">
@@ -75,8 +75,8 @@
                 <div class="list-product-gaming">
                     <?php foreach($data['laptop_gaming'] as $laptop_gaming): ?>
                     <div class="product-card">
-                        <img src="<?php echo 'https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/' . $laptop_gaming['display_image']; ?>"
-                            alt="">
+                    <img src="<?php echo 'https://cdn2.fptshop.com.vn/unsafe/180x0/filters:quality(60)/' . str_replace('/', '_', $laptop_gaming['display_image']); ?>"
+                    alt="">
                         <h4 class="pd-name"><?php echo $laptop_gaming['name']; ?></h4><br>
                         <div class="pd-price">
                             <?php
@@ -115,7 +115,7 @@
         <div class="product-macbook">
             <div class="intro-product-macbook">
                 <h2>MACBOOK </h2>
-                <h3><a href="">All Products</a></h3>
+                <h3><a href="http://localhost/laptop_shop/product_all?brand=Apple-macbook&price=Tat_ca&cpu=Tat_ca&ram=Tat_ca&person=Tat_ca">All Products</a></h3>
             </div>
             <div class="div-list">
                 <div class="macbook-brand">
@@ -124,8 +124,8 @@
                 <div class="list-product-macbook">
                     <?php foreach($data['laptop_macbook'] as $laptop_macbook): ?>
                     <div class="product-card">
-                        <img src="<?php echo 'https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/' . $laptop_macbook['display_image']; ?>"
-                            alt="">
+                        <img src="<?php echo 'https://cdn2.fptshop.com.vn/unsafe/180x0/filters:quality(60)/' . str_replace('/', '_', $laptop_macbook['display_image']); ?>"
+                        alt="">
                         <h4 class="pd-name"><?php echo $laptop_macbook['name']; ?></h4><br>
                         <div class="pd-price">
                             <?php
@@ -163,36 +163,27 @@
         </div>
     </div>
 </main>
-
+<!-- <script src="assets/js/click_detail.js"></script> -->
 <script>
-var slideIndex = 0;
-showSlides(false);
-
-function plusSlides(n) {
-    clearTimeout(autoSlide); // clear the existing timer
-    showSlides(slideIndex += n, true);
-}
-
-function showSlides(n, manual) {
-    var i;
-    var slides = document.getElementsByClassName("slideshow")[0].getElementsByTagName("img");
-    if (n > slides.length) {
-        slideIndex = 1
-    }
-    if (n < 1) {
-        slideIndex = slides.length
-    }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    if (!manual) {
-        slideIndex++;
-        if (slideIndex > slides.length) {
-            slideIndex = 1
-        }
-    }
-    slides[slideIndex - 1].style.display = "block";
-    autoSlide = setTimeout(showSlides, 5000); // Change image every 8 seconds
-}
+document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('click', () => {
+        product_name = card.querySelector('.pd-name').textContent;
+        console.log(product_name);
+        $.ajax({
+            url: 'http://localhost/laptop_shop/home/product_detail',
+            type: 'POST',
+            data: {
+                product_name: product_name
+            },
+            success: function(data) {
+                window.location.href = 'http://localhost/laptop_shop/product_detail?' + card.querySelector('.pd-name').textContent;
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+});
 </script>
+<script src="assets/js/showSlides.js"></script>
 <?php require_once 'app/views/includes/footer.php'; ?>

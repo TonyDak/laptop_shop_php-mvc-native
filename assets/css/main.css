@@ -97,6 +97,7 @@ main a:hover {
     -moz-transition: border-color 0.3s ease;
     -ms-transition: border-color 0.3s ease;
     -o-transition: border-color 0.3s ease;
+    cursor: pointer;
 }
 .product-card img{
     display: flex;

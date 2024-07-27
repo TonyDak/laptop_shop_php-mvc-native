@@ -130,47 +130,45 @@
     </div>
 </main>
 
+<script src="assets/js/showSlides.js"></script>
 <script>
-var slideIndex = 0;
-showSlides(false);
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const defaultParams = {
+            brand: 'Tat_ca',
+            price: 'Tat_ca',
+            cpu: 'Tat_ca',
+            ram: 'Tat_ca',
+            person: 'Tat_ca'
+        };
 
-function plusSlides(n) {
-    clearTimeout(autoSlide); // clear the existing timer
-    showSlides(slideIndex += n, true);
-}
+        let needsRedirect = false;
 
-function showSlides(n, manual) {
-    var i;
-    var slides = document.getElementsByClassName("slideshow")[0].getElementsByTagName("img");
-    if (n > slides.length) {
-        slideIndex = 1
-    }
-    if (n < 1) {
-        slideIndex = slides.length
-    }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    if (!manual) {
-        slideIndex++;
-        if (slideIndex > slides.length) {
-            slideIndex = 1
+        for (const [key, value] of Object.entries(defaultParams)) {
+            if (!urlParams.has(key)) {
+                urlParams.set(key, value);
+                needsRedirect = true;
+            }
         }
-    }
-    slides[slideIndex - 1].style.display = "block";
-    autoSlide = setTimeout(showSlides, 5000); // Change image every 8 seconds
-}
-</script>
 
-</main>
+        if (needsRedirect) {
+            window.location.search = urlParams.toString();
+        }
+    });
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $('.filter-button').on('click', function() {
-    // Remove 'active' class from all filter buttons
-    $('.filter-button').removeClass('active');
-
-    // Add 'active' class to the clicked button
-    $(this).addClass('active');
+    // Check if the clicked button is already active
+    if ($(this).hasClass('active')) {
+        // Remove 'active' class from the clicked button
+        $(this).removeClass('active');
+    } else {
+        // Remove 'active' class from all filter buttons
+        $('.filter-button').removeClass('active');
+        // Add 'active' class to the clicked button
+        $(this).addClass('active');
+    }
     loadPage(1);  // Call loadPage when the filter button is clicked
 });
 
@@ -229,7 +227,7 @@ function loadPage(page) {
             data.forEach(function(laptop) {
                 var productCard = `
                     <div class="product-card">
-                        <img src="https://images.fpt.shop/unsafe/fit-in/240x215/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/${laptop.display_image}" alt="">
+                        <img src="https://cdn2.fptshop.com.vn/unsafe/180x0/filters:quality(60)/${laptop.display_image.replace(/\//g, '_')}" alt="">
                         <h4 class="pd-name">${laptop.name}</h4><br>
                         <div class="pd-price">`;
                 if (laptop.discount != 0) {
@@ -323,36 +321,27 @@ function loadPage(page) {
             }
         }
     });
-    // // Kiểm tra nếu trang lớn hơn 1, thì thêm vào URL
-    // if (page > 1) {
-    //     var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?trang=' + page;
-    //     window.history.pushState({path:newUrl}, '', newUrl);
-    // } else {
-    //     // Nếu là trang đầu tiên, quay về URL gốc không có tham số trang
-    //     var originalUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-    //     window.history.pushState({path:originalUrl}, '', originalUrl);
-    // }
 }
 
 // Call loadPage function when page is loaded
 $(document).ready(function() {
     loadPage(1);
 });
-
 </script>
 <script>
     function removeAccents(str) {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '_');
     }
-    $('input[type=checkbox]').on('change', function() {
-        var brand=[];
-        var price=[];
-        var cpu=[];
-        var ram=[];
-        var person=[];
+    
+    function handleFilterChange() {
+        var brand = [];
+        var price = [];
+        var cpu = [];
+        var ram = [];
+        var person = [];
         var fillClasses = ['.fill-brand', '.fill-price', '.fill-cpu', '.fill-ram', '.fill-person'];
         fillClasses.forEach(function(fillClass) {
-            $(fillClass+' input[type=checkbox]:checked').each(function() {
+            $(fillClass + ' input[type=checkbox]:checked').each(function() {
                 var filter = $(this).next('label').text();
                 if (fillClass === '.fill-brand') {
                     brand.push(removeAccents(filter));
@@ -367,10 +356,20 @@ $(document).ready(function() {
                 }
             });
         });
-
+    
         var newUrl = window.location.origin + window.location.pathname + '?brand=' + brand.join(',') + '&price=' + price.join(',') + '&cpu=' + cpu.join(',') + '&ram=' + ram.join(',') + '&person=' + person.join(',');
+        if ($('#fill-price-discount').hasClass('active')) {
+            newUrl += '&discount';
+        }
         window.history.pushState({}, '', newUrl);
-    });
+    }
+    
+    // Gán sự kiện change cho checkbox
+    $('input[type=checkbox]').on('change', handleFilterChange);
+    
+    // Gán sự kiện click cho button, giả sử button có id là 'apply-filters'
+    $('#fill-price-discount').on('click', handleFilterChange);
+    
     $(document).ready(function() {
         // Get URL parameters
         var urlParams = new URLSearchParams(window.location.search);
@@ -412,6 +411,9 @@ $(document).ready(function() {
                 });
             });
             
+        }
+        if (urlParams.has('discount')) {
+            $('#fill-price-discount').addClass('active');
         }
         loadPage(1);
     });
@@ -455,5 +457,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
 });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Gán sự kiện click cho phần tử cha bao quanh các .product-card
+        document.body.addEventListener('click', function(event) {
+            // Kiểm tra nếu phần tử được click là .product-card hoặc con của nó
+            const card = event.target.closest('.product-card');
+            if (card) {
+                const productName = card.querySelector('.pd-name').textContent.trim();
+                console.log(productName);
+
+                $.ajax({
+                    url: 'http://localhost/laptop_shop/product_all/product_detail',
+                    type: 'POST',
+                    data: {
+                        product_name: productName
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        const encodedProductName = encodeURIComponent(productName);
+                        window.location.href = `http://localhost/laptop_shop/product_detail?product_name=${encodedProductName}`;
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+        });
+    });
 </script>
 <?php require_once 'app/views/includes/footer.php'; ?>
